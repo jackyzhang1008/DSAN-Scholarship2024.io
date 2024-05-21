@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "other/cleaning.html",
+    "href": "other/cleaning.html",
+    "title": "Climate Impact on Plants",
+    "section": "",
+    "text": "import pandas as pd\n\nhistoric_data = pd.read_csv('data/NABR_historic.csv')\nnearterm_data = pd.read_csv('data/nearterm_data_2020-2024.csv')\nhistoric_data.shape, nearterm_data.shape\n\n((13821, 29), (55802, 29))\n\n\n\n\nhistoric_data_ffill = historic_data.fillna(method='ffill')\nnearterm_data_ffill = nearterm_data.fillna(method='ffill')\nhistoric_data_cleaned = historic_data_ffill.fillna(method='bfill')\nnearterm_data_cleaned = nearterm_data_ffill.fillna(method='bfill')\nmerged_data = pd.concat([historic_data_cleaned, nearterm_data_cleaned])\nmerged_data.drop_duplicates(inplace=True)\nmerged_data.isnull().sum(), merged_data.shape\nprint(merged_data.head())\nmerged_data.shape\nmerged_data.to_csv('data/merged_data.csv', index=False)\n\n       long       lat  year TimePeriod         RCP scenario  treecanopy  \\\n0 -110.0472  37.60413  1980       Hist  historical      sc1           0   \n1 -110.0472  37.60413  1980       Hist  historical      sc1           0   \n2 -110.0472  37.60413  1980       Hist  historical      sc1           0   \n3 -110.0472  37.60413  1980       Hist  historical      sc1           0   \n5 -110.0472  37.60413  1981       Hist  historical      sc1           0   \n\n   Ann_Herb  Bare  Herb  ...  PPT_Annual  T_Winter  T_Summer   T_Annual  \\\n0         0    84     5  ...       13.79  0.964835  23.15924  23.159240   \n1         0    84     5  ...        2.69  0.964835  23.15924   0.964835   \n2         0    84     5  ...       13.79  0.964835  23.15924   0.964835   \n3         0    84     5  ...        2.69  0.964835  23.15924  23.159240   \n5         0    84     5  ...       11.75  3.334444  23.27065  11.581320   \n\n   Tmax_Summer  Tmin_Winter  VWC_Winter_whole  VWC_Spring_whole  \\\n0        37.05       -12.45          0.113447          0.096831   \n1        37.05       -12.45          0.113447          0.096831   \n2        37.05       -12.45          0.113447          0.096831   \n3        37.05       -12.45          0.113447          0.096831   \n5        37.55       -12.45          0.113447          0.096831   \n\n   VWC_Summer_whole  VWC_Fall_whole  \n0          0.041876        0.052298  \n1          0.041876        0.052298  \n2          0.041876        0.052298  \n3          0.041876        0.052298  \n5          0.041876        0.052298  \n\n[5 rows x 29 columns]\n\n\nC:\\Users\\Jacky\\AppData\\Local\\Temp\\ipykernel_33292\\3906377520.py:2: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.\n  historic_data_ffill = historic_data.fillna(method='ffill')\nC:\\Users\\Jacky\\AppData\\Local\\Temp\\ipykernel_33292\\3906377520.py:3: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.\n  nearterm_data_ffill = nearterm_data.fillna(method='ffill')\nC:\\Users\\Jacky\\AppData\\Local\\Temp\\ipykernel_33292\\3906377520.py:6: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.\n  historic_data_cleaned = historic_data_ffill.fillna(method='bfill')\nC:\\Users\\Jacky\\AppData\\Local\\Temp\\ipykernel_33292\\3906377520.py:7: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.\n  nearterm_data_cleaned = nearterm_data_ffill.fillna(method='bfill')\n\n\n(69604, 29)\n\n\n\nmerged_data.to_csv('data/cleaned_merged_data.csv', index=False)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "The land that borders Colorado, Utah, Arizona, and New Mexico is a unique area with a diverse ecosystem, showcasing a variety of beautiful landscapes. Today, our goal is to explore the changes in vegetation in this region from 1980 to 2024. Specifically, we aim to investigate how different weather patterns have affected various types of plants over time. By examining these trends, we hope to gain insights into the impacts of climate variability on this distinctive and ecologically rich area."
+  },
+  {
+    "objectID": "index.html#tree-conopy-shrub-herb",
+    "href": "index.html#tree-conopy-shrub-herb",
+    "title": "Introduction",
+    "section": "Tree Conopy, Shrub, Herb",
+    "text": "Tree Conopy, Shrub, Herb\n                    \nThe fluctuations in tree canopy cover can be attributed to various factors such as climate variations, land use changes, and ecological dynamics. Notably, certain periods show significant declines or increases, which may correspond to specific environmental events or management practices.\n                    \nShrub cover also exhibits variability, reflecting its sensitivity to climatic conditions and disturbances. Periods of increased shrub cover may indicate favorable growth conditions or reduced competition from other vegetation types.\n                    \nHerbaceous vegetation, being more responsive to short-term climatic fluctuations, shows noticeable variability year to year. Peaks and troughs in herb cover can be linked to seasonal rainfall patterns, temperature fluctuations, and other environmental factors."
+  },
+  {
+    "objectID": "index.html#precipitation-in-summer-and-winter",
+    "href": "index.html#precipitation-in-summer-and-winter",
+    "title": "Introduction",
+    "section": "Precipitation in Summer and Winter",
+    "text": "Precipitation in Summer and Winter\n                   \nDuring summer, precipitation can have a significant impact on tree canopy growth. Higher precipitation often leads to increased soil moisture, which benefits tree growth.\n                   \nIn winter, the precipitation mainly comes in the form of snow, which melts and contributes to soil moisture in the spring. This delayed effect can also influence tree canopy coverage, although the immediate impact is less compared to summer precipitation."
+  },
+  {
+    "objectID": "index.html#temperature-in-summer-and-winter",
+    "href": "index.html#temperature-in-summer-and-winter",
+    "title": "Introduction",
+    "section": "Temperature in Summer and Winter",
+    "text": "Temperature in Summer and Winter\n                   \nHigh summer temperatures can stress trees, especially if not accompanied by sufficient precipitation. However, moderate temperatures with adequate rainfall can promote tree growth.\n                   \nWinter temperatures impact tree dormancy and subsequent growth phases. Extremely low temperatures can damage tree tissues, while milder winters might lead to early budding and increased growth in the following spring."
+  },
+  {
+    "objectID": "index.html#amount-of-water-in-ground-during-summer-and-winter",
+    "href": "index.html#amount-of-water-in-ground-during-summer-and-winter",
+    "title": "Introduction",
+    "section": "Amount of water in Ground During Summer and Winter",
+    "text": "Amount of water in Ground During Summer and Winter\n                   \nSoil moisture during summer is crucial for tree survival and growth, especially in arid regions. The plot indicates a strong positive correlation between summer soil moisture and tree canopy cover. Trees thrive when soil moisture levels are sufficient to meet their water requirements during the hot summer months.\n                   \nWinter soil moisture is critical for recharging soil water reserves, which trees rely on during the growing season. The plot shows a positive relationship between winter soil moisture and tree canopy cover, underscoring the importance of adequate winter soil moisture for sustaining tree health and canopy density."
+  }
+]
